@@ -58,7 +58,7 @@ public class GameButtonListener implements ActionListener {
 		JButton[][] buttons = group.getE().getButtons();
 		for (int i = 0; i < buttons.length; i++) {
 			for (int j = 0; j < buttons[i].length; j++) {
-				buttons[i][j].setActionCommand(g.getPuzzle()[i][j] + "");
+				buttons[i][j].setActionCommand(g.getGameTab()[i][j] + "");
 			}
 		}
 		UpdateIcon();
@@ -97,7 +97,7 @@ public class GameButtonListener implements ActionListener {
 			for (int i = 0; i < buttons.length; i++) {
 				for (int j = 0; j < buttons[i].length; j++) {
 					buttons[i][j].setIcon(null);
-					if (g.getPuzzle()[i][j] == 0) {
+					if (g.getGameTab()[i][j] == 0) {
 						buttons[i][j].setOpaque(false);
 						buttons[i][j].setContentAreaFilled(false);
 						buttons[i][j].setBorderPainted(false);

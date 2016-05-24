@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 
 public class Game {
 
-	private int[][] puzzle;
+	private int[][] gameTab;
 	private int size, x, y;
 	private final String imageName = "img2.png";
 	private int bestScore = -1;
@@ -38,34 +38,34 @@ public class Game {
 	public boolean isSolved() {
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
-				if (puzzle[j][i] == 0)
+				if (gameTab[j][i] == 0)
 					continue;
-				if (puzzle[j][i] != 1 + j * size + i)
+				if (gameTab[j][i] != 1 + j * size + i)
 					return false;
 			}
 		}
 		return true;
 	}
 
-	public void mix(int numberofMove) {
+	public void mixTab(int numberofMove) {
 		while (numberofMove > 0) {
-			char tmp = (char) Math.floor(Math.random() * 4);
+			int tmp =  (int) Math.floor(Math.random() * 4);
 			if (move(tmp))
 				numberofMove--;
 		}
 		moveCount = 0;
 	}
 
-	public boolean move(int key) {
+	public boolean move(int dir) {
 		int tmp;
-		switch (key) {
+		switch (dir) {
 		// Haut
 		case 0: {
 			if (y < 1)
 				return false;
-			tmp = puzzle[y][x];
-			puzzle[y][x] = puzzle[y - 1][x];
-			puzzle[y - 1][x] = tmp;
+			tmp = gameTab[y][x];
+			gameTab[y][x] = gameTab[y - 1][x];
+			gameTab[y - 1][x] = tmp;
 			y--;
 			break;
 		}
@@ -73,9 +73,9 @@ public class Game {
 		case 1: {
 			if (x < 1)
 				return false;
-			tmp = puzzle[y][x];
-			puzzle[y][x] = puzzle[y][x - 1];
-			puzzle[y][x - 1] = tmp;
+			tmp = gameTab[y][x];
+			gameTab[y][x] = gameTab[y][x - 1];
+			gameTab[y][x - 1] = tmp;
 			x--;
 			break;
 		}
@@ -83,9 +83,9 @@ public class Game {
 		case 2: {
 			if (y > size - 2)
 				return false;
-			tmp = puzzle[y][x];
-			puzzle[y][x] = puzzle[y + 1][x];
-			puzzle[y + 1][x] = tmp;
+			tmp = gameTab[y][x];
+			gameTab[y][x] = gameTab[y + 1][x];
+			gameTab[y + 1][x] = tmp;
 			y++;
 			break;
 		}
@@ -93,9 +93,9 @@ public class Game {
 		case 3: {
 			if (x > size - 2)
 				return false;
-			tmp = puzzle[y][x];
-			puzzle[y][x] = puzzle[y][x + 1];
-			puzzle[y][x + 1] = tmp;
+			tmp = gameTab[y][x];
+			gameTab[y][x] = gameTab[y][x + 1];
+			gameTab[y][x + 1] = tmp;
 			x++;
 			break;
 		}
@@ -106,26 +106,26 @@ public class Game {
 
 	public void StartGame(int size) {
 		setSize(size);
-		puzzle = new int[size][size];
+		gameTab = new int[size][size];
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
-				puzzle[j][i] = 1 + j * size + i;
+				gameTab[j][i] = 1 + j * size + i;
 			}
 
 		}
 		x = size - 1;
 		y = size - 1;
-		puzzle[x][y] = 0;
+		gameTab[x][y] = 0;
 	}
 
-	public int[][] getPuzzle() {
-		return puzzle;
+	public int[][] getGameTab() {
+		return gameTab;
 	}
 
 	public int[] search(int id) {
-		for (int i = 0; i < puzzle.length; i++) {
-			for (int j = 0; j < puzzle[i].length; j++) {
-				if (puzzle[i][j] == id)
+		for (int i = 0; i < gameTab.length; i++) {
+			for (int j = 0; j < gameTab[i].length; j++) {
+				if (gameTab[i][j] == id)
 					return new int[] { i, j };
 			}
 		}

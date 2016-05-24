@@ -42,7 +42,7 @@ public class ButtonMenuPrincipalListener implements ActionListener {
 		default:
 			break;
 		}
-		g.mix(100);
+		g.mixTab(100);
 		group.setE(new EcranDeJeux(g, group.getButtonListener(), group.getControlMenu()));
 		f.setSize(500, 500);
 		group.getE().setSize(f.getSize());;

@@ -34,18 +34,18 @@ public class ControlMenu implements ActionListener {
 		switch (item.getLabel()) {
 		case "3x3":
 			g.StartGame(3);
-			g.mix(100);
+			g.mixTab(100);
 
 			break;
 
 		case "4x4":
 			g.StartGame(4);
-			g.mix(100);
+			g.mixTab(100);
 			break;
 
 		case "5x5":
 			g.StartGame(5);
-			g.mix(100);
+			g.mixTab(100);
 			break;
 
 		case "Meillieur Score":

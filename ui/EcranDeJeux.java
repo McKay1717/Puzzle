@@ -55,7 +55,7 @@ public class EcranDeJeux extends JPanel {
 
 				buttons[i][j] = new JButton();
 
-				buttons[i][j].setActionCommand(game.getPuzzle()[i][j] + "");
+				buttons[i][j].setActionCommand(game.getGameTab()[i][j] + "");
 				buttons[i][j].addActionListener(gameButtonListener);
 				buttons[i][j].setBorder(BorderFactory.createEmptyBorder());
 				grille.add(buttons[i][j]);
